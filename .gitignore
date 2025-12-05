@@ -1,16 +1,14 @@
-.DS_Store
-.env
+# Dependencies
 node_modules/
 
-# React Router
-.react-router/
-build/
+# Build
+frontend/dist/
 
-# Backend
-backend/.env
+# Environment
+.env
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+# Logs
+*.log
+
+# OS
+.DS_Store

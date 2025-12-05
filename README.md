@@ -1,139 +1,132 @@
-# SymptomWise 🩺
+# SymptomWise
 
-AI-powered symptom checker that helps you understand potential health conditions and which type of doctor to consult.
+AI-powered symptom checker that helps identify potential health conditions and recommends appropriate medical specialists.
 
 ## Features
 
-- 🔍 Enter symptoms in natural language
-- 🤖 AI-powered analysis
-- 👨‍⚕️ Recommends appropriate medical specialist
-- 🎨 Modern, responsive UI
-- ⚡ Fast and lightweight
+- Natural language symptom input
+- AI-powered analysis using Google Gemini
+- Returns 1-3 possible conditions based on symptom clarity
+- Recommends appropriate medical specialist for each condition
+- Modern, responsive UI with Tailwind CSS
 
 ## Project Structure
 
 ```
-├── frontend/          # React Router frontend
-│   ├── app/
-│   │   ├── routes/
-│   │   │   └── home.tsx    # Main symptom checker page
-│   │   ├── app.css         # Global styles
-│   │   └── root.tsx        # Root layout
+symptom-wise/
+├── backend/
+│   ├── server.js           # Express server entry point
+│   ├── routes/
+│   │   └── api.js          # API route handlers
+│   ├── services/
+│   │   └── gemini.js       # Gemini API integration
+│   └── utils/
+│       └── prompts.js      # AI prompts and constants
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx         # Main React component
+│   │   ├── main.jsx        # React entry point
+│   │   └── index.css       # Tailwind styles
+│   ├── index.html
 │   └── package.json
-├── backend/           # Express.js backend
-│   ├── server.js      # API server
-│   ├── .env.example   # Environment variables template
-│   └── package.json
-└── package.json       # Root package.json with scripts
+├── .env.example            # Environment template
+├── .gitignore
+└── package.json            # Root package with scripts
 ```
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js >= 18.0.0
+- Google Gemini API key
+
 ### Installation
 
 ```bash
-# Install all dependencies
-npm run install:all
+# Clone the repository
+git clone https://github.com/Muntajir11/SymptomWise.git
+cd SymptomWise
+
+# Install backend dependencies
+npm install
+
+# Install frontend dependencies
+cd frontend && npm install
 ```
 
 ### Configuration
 
-1. Copy the environment example file:
-```bash
-cp backend/.env.example backend/.env
-```
+Create a `.env` file in the root directory:
 
-2. Add your API credentials to `backend/.env`:
-```
-API_KEY=your_api_key_here
-API_URL=your_api_url_here
+```env
+PORT=5000
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 ### Development
 
-Run frontend and backend separately:
-
 ```bash
-# Terminal 1 - Frontend (http://localhost:5173)
-npm run dev:frontend
+# Terminal 1 - Start backend server
+npm run server
 
-# Terminal 2 - Backend (http://localhost:3000)
-npm run dev:backend
+# Terminal 2 - Start frontend dev server
+cd frontend && npm run dev
 ```
 
-## Deployment on Render
+- Backend runs on: http://localhost:5000
+- Frontend runs on: http://localhost:5173
 
-### Setup
+### Production Build
 
-1. Create a new **Web Service** on Render
-2. Connect your GitHub repository
-3. Configure the service:
+```bash
+# Build frontend
+cd frontend && npm run build
 
-| Setting | Value |
-|---------|-------|
-| **Build Command** | `npm run render-build` |
-| **Start Command** | `npm start` |
-| **Root Directory** | (leave empty) |
+# Start server (serves both API and static files)
+npm start
+```
 
-4. Add environment variables:
-   - `API_KEY` - Your API key
-   - `API_URL` - Your API URL
-   - `NODE_ENV` - `production`
+## Deployment (Render)
 
-### How it works
+1. Connect your GitHub repository to Render
+2. Set build command: `npm run build`
+3. Set start command: `npm start`
+4. Add environment variable: `GEMINI_API_KEY`
 
-- The build command installs dependencies and builds the React frontend
-- The Express server serves the built frontend files
-- API requests to `/api/*` are handled by the backend
+## API Endpoints
+
+### POST /api/analyze-symptoms
+
+Analyzes symptoms and returns possible conditions.
+
+**Request:**
+```json
+{
+  "symptoms": "headache, fever, sore throat"
+}
+```
+
+**Response:**
+```json
+{
+  "conditions": [
+    {
+      "disease": "Common Cold",
+      "doctor": "General Physician",
+      "description": "Viral infection affecting the upper respiratory tract."
+    }
+  ]
+}
+```
+
+### GET /api/health
+
+Health check endpoint.
 
 ## Tech Stack
 
-- **Frontend**: React Router 7, TypeScript, TailwindCSS
-- **Backend**: Node.js, Express.js
-- **Deployment**: Render
+- **Frontend:** React, Vite, Tailwind CSS
+- **Backend:** Node.js, Express
+- **AI:** Google Gemini API
 
-## Disclaimer
-
-⚠️ This tool provides general guidance only and is not a substitute for professional medical advice. Always consult a healthcare provider for proper diagnosis and treatment.
-
-## License
-
-MIT
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
