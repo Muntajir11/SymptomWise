@@ -75,7 +75,7 @@ cd frontend && npm run dev
 ```
 
 - Backend runs on: http://localhost:5000
-- Frontend runs on: http://localhost:5173
+- Frontend runs on: http://localhost:3000
 
 ### Production Build
 
