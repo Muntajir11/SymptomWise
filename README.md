@@ -1,52 +1,104 @@
-# Welcome to React Router!
+# SymptomWise 🩺
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+AI-powered symptom checker that helps you understand potential health conditions and which type of doctor to consult.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 🔍 Enter symptoms in natural language
+- 🤖 AI-powered analysis
+- 👨‍⚕️ Recommends appropriate medical specialist
+- 🎨 Modern, responsive UI
+- ⚡ Fast and lightweight
+
+## Project Structure
+
+```
+├── frontend/          # React Router frontend
+│   ├── app/
+│   │   ├── routes/
+│   │   │   └── home.tsx    # Main symptom checker page
+│   │   ├── app.css         # Global styles
+│   │   └── root.tsx        # Root layout
+│   └── package.json
+├── backend/           # Express.js backend
+│   ├── server.js      # API server
+│   ├── .env.example   # Environment variables template
+│   └── package.json
+└── package.json       # Root package.json with scripts
+```
 
 ## Getting Started
 
 ### Installation
 
-Install the dependencies:
-
 ```bash
-npm install
+# Install all dependencies
+npm run install:all
+```
+
+### Configuration
+
+1. Copy the environment example file:
+```bash
+cp backend/.env.example backend/.env
+```
+
+2. Add your API credentials to `backend/.env`:
+```
+API_KEY=your_api_key_here
+API_URL=your_api_url_here
 ```
 
 ### Development
 
-Start the development server with HMR:
+Run frontend and backend separately:
 
 ```bash
-npm run dev
+# Terminal 1 - Frontend (http://localhost:5173)
+npm run dev:frontend
+
+# Terminal 2 - Backend (http://localhost:3000)
+npm run dev:backend
 ```
 
-Your application will be available at `http://localhost:5173`.
+## Deployment on Render
 
-## Building for Production
+### Setup
 
-Create a production build:
+1. Create a new **Web Service** on Render
+2. Connect your GitHub repository
+3. Configure the service:
 
-```bash
-npm run build
-```
+| Setting | Value |
+|---------|-------|
+| **Build Command** | `npm run render-build` |
+| **Start Command** | `npm start` |
+| **Root Directory** | (leave empty) |
 
-## Deployment
+4. Add environment variables:
+   - `API_KEY` - Your API key
+   - `API_URL` - Your API URL
+   - `NODE_ENV` - `production`
 
-### Docker Deployment
+### How it works
 
-To build and run using Docker:
+- The build command installs dependencies and builds the React frontend
+- The Express server serves the built frontend files
+- API requests to `/api/*` are handled by the backend
+
+## Tech Stack
+
+- **Frontend**: React Router 7, TypeScript, TailwindCSS
+- **Backend**: Node.js, Express.js
+- **Deployment**: Render
+
+## Disclaimer
+
+⚠️ This tool provides general guidance only and is not a substitute for professional medical advice. Always consult a healthcare provider for proper diagnosis and treatment.
+
+## License
+
+MIT
 
 ```bash
 docker build -t my-app .
