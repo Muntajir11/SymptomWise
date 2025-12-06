@@ -1,5 +1,7 @@
 # MediScan
 
+🔗 **Live Demo:** [https://symptomwise-eloy.onrender.com/](https://symptomwise-eloy.onrender.com/)
+
 AI-powered symptom checker that helps identify potential health conditions and recommends appropriate medical specialists.
 
 ## Features
