@@ -45,7 +45,7 @@ function App() {
       {/* Header */}
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold text-teal-400 mb-2">
-          SymptomWise
+          MediScan
         </h1>
         <p className="text-gray-300">
           AI-powered symptom analysis to guide your healthcare journey
@@ -126,6 +126,21 @@ function App() {
                         <h3 className="text-gray-400 text-sm uppercase tracking-wide">Description</h3>
                         <p className="text-gray-300">{condition.description}</p>
                       </div>
+                      
+                      {condition.medication && (
+                        <div>
+                          <h3 className="text-gray-400 text-sm uppercase tracking-wide">Recommended Action</h3>
+                          <p className={`text-lg font-medium ${
+                            condition.medication.toLowerCase().includes('seek immediate') || 
+                            condition.medication.toLowerCase().includes('see doctor immediately') || 
+                            condition.medication.toLowerCase().includes('emergency')
+                              ? 'text-red-400'
+                              : 'text-teal-300'
+                          }`}>
+                            {condition.medication}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -145,7 +160,7 @@ function App() {
 
       {/* Footer */}
       <footer className="mt-8 text-gray-500 text-sm">
-        © 2025 SymptomWise. For informational purposes only.
+        © 2025 MediScan. For informational purposes only.
       </footer>
     </div>
   );

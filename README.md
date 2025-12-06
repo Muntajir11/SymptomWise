@@ -1,4 +1,4 @@
-# SymptomWise
+# MediScan
 
 AI-powered symptom checker that helps identify potential health conditions and recommends appropriate medical specialists.
 
@@ -45,8 +45,8 @@ symptom-wise/
 
 ```bash
 # Clone the repository
-git clone https://github.com/Muntajir11/SymptomWise.git
-cd SymptomWise
+git clone https://github.com/Muntajir11/MediScan.git
+cd MediScan
 
 # Install backend dependencies
 npm install
